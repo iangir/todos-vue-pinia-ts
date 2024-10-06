@@ -1,7 +1,7 @@
 <template>
-	<form @submit.prevent="addTask" class="input-section">
+	<form @submit.prevent="handleSubmit" class="input-section">
 		<input
-			v-model="newTask"
+			v-model="input"
 			class="addTask-input"
 			type="text"
 			id="newTask"
@@ -14,3 +14,16 @@
 		</button>
 	</form>
 </template>
+
+<script setup lang="ts">
+import { useTodoStore } from '../stores/TodoStore.ts';
+const todoStore = useTodoStore();
+
+const input = defineModel();
+const handleSubmit = () => {
+	if (input.value.trim() !== '') {
+		todoStore.addTodo(input.value);
+		input.value = '';
+	}
+};
+</script>

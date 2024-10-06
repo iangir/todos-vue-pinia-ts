@@ -5,8 +5,8 @@
 				v-for="filter in filters"
 				:key="filter"
 				class="toggle-button"
-				:class="{ 'button--primary': activeFilter === filter }"
-				@click="setFilter(filter)"
+				:class="{ 'button--primary': todoStore.activeTab === filter }"
+				@click="todoStore.setActiveTab(filter)"
 			>
 				{{ filter }}
 			</button>
@@ -14,6 +14,10 @@
 	</div>
 </template>
 
-<script setup>
-const filters = ['All', 'Active', 'Done'];
+<script setup lang="ts">
+import { useTodoStore } from '../stores/TodoStore.ts';
+
+const filters: string[] = ['All', 'Active', 'Done'];
+
+const todoStore = useTodoStore();
 </script>

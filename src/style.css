@@ -19,7 +19,7 @@
 body {
 	margin: 0;
 	display: flex;
-	place-items: center;
+	/* place-items: center; */
 	min-width: 320px;
 	min-height: 100vh;
 }
@@ -49,8 +49,8 @@ button:focus-visible {
 }
 
 #app {
-	max-width: 800px;
-	min-width: 40vw;
+	width: 40rem;
+	min-height: 80vh;
 	margin: 0 auto;
 	padding: 2rem;
 	text-align: center;
@@ -71,34 +71,24 @@ button:focus-visible {
 	border-radius: 2rem;
 }
 
-/* .toggle-group .button {
-	font-size: 1.6rem;
-} */
-
-.toggle-group .button:not(.button--primary):hover {
-	color: var(--secondary-color);
-}
-
 .toggle-button {
 	font-size: 2rem;
 	padding: 0.6rem 1rem;
-	border-radius: 2rem;
+	/* border-radius: 2rem; */
 }
 
-/* .button--primary {
+.toggle-button:not(.button--primary):hover {
+	color: var(--secondary-color);
+}
+
+.toggle-button:not(.button--primary):focus {
 	color: var(--primary-color);
-	border: 2px solid var(--primary-color);
 }
 
-.button--filled {
-	padding: 0.8rem 1rem;
-	color: var(--tretriary-color);
-	background-color: var(--primary-color);
+.button--primary {
+	color: var(--secondary-color);
+	outline: 0.2rem solid var(--secondary-color);
 }
-
-.button--primary:hover {
-	opacity: 0.8;
-} */
 
 .input-section {
 	display: flex;
@@ -164,7 +154,6 @@ ul {
 .task > .icon-btn:last-child {
 	color: var(--tertiary-color);
 	margin: 0;
-	/* margin-left: auto; */
 	padding: 0 1rem;
 }
 

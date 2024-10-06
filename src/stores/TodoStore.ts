@@ -33,6 +33,13 @@ const array = [
 		title: 'laboriosam mollitia et enim quasi adipisci quia provident illum',
 		completed: false,
 	},
+	{
+		userId: 1,
+		id: 6,
+		title:
+			'ayyyy laboriosam mollitia et enim quasi adipisci quia provident illum',
+		completed: false,
+	},
 ];
 
 export const useTodoStore = defineStore('todos', () => {
@@ -45,12 +52,28 @@ export const useTodoStore = defineStore('todos', () => {
 
 	const todosInLocalStorage = localStorage.getItem('todos');
 	if (todosInLocalStorage) {
-		todos.value = JSON.parse(todosInLocalStorage)._value;
+		todos.value = JSON.parse(todosInLocalStorage);
 	}
 
-	const active = computed(() => todos.value.filter((todo) => !todo.completed));
+	const filteredTodos = computed(() => {
+		switch (activeTab.value) {
+			case 'All':
+				return todos.value;
+			case 'Active':
+				return todos.value.filter((todo) => !todo.completed);
+			case 'Done':
+				return todos.value.filter((todo) => todo.completed);
+			default:
+				break;
+		}
+	});
 
-	const done = computed(() => todos.value.filter((todo) => todo.completed));
+	const addTodo = (title: string) => {
+		todos.value = [
+			{ userId: 1, id: Math.random(), title, completed: false },
+			...todos.value,
+		];
+	};
 
 	const completedToggle = (id: number) => {
 		todos.value.forEach((todo) => {
@@ -61,12 +84,19 @@ export const useTodoStore = defineStore('todos', () => {
 	};
 
 	watch(
-		() => todos,
+		() => todos.value,
 		(state) => {
 			localStorage.setItem('todos', JSON.stringify(state));
 		},
 		{ deep: true }
 	);
 
-	return { todos, activeTab, active, done, setActiveTab, completedToggle };
+	return {
+		todos,
+		filteredTodos,
+		activeTab,
+		setActiveTab,
+		addTodo,
+		completedToggle,
+	};
 });

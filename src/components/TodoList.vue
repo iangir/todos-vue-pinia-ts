@@ -1,26 +1,20 @@
 <template>
-	<p class="tasks-header">Tasks ({{ todos.length }})</p>
+	<p class="tasks-header">Tasks ({{ todoStore.filteredTodos.length }})</p>
 	<ul>
-		<li v-for="(todo, index) in todos" :key="todo.id" class="task">
-			<button class="icon-btn task-icon-btn">
-				<i class="bi bi-check-circle"></i>
-			</button>
-			<span>{{ todo.title }}</span>
-			<button class="icon-btn task-icon-btn">
-				<i class="bi bi-pencil-square"></i>
-			</button>
-			<button @click="deleteTask(index)" class="icon-btn task-icon-btn">
-				<i class="bi bi-trash3"></i>
-			</button>
-		</li>
+		<TodoItem
+			v-for="todo in todoStore.filteredTodos"
+			:key="todo.id"
+			:todo="todo"
+		/>
 	</ul>
 </template>
 
 <script setup lang="ts">
-import { Todo } from '../types/TodoTypes.ts';
-interface Props {
-	todos: Todo[];
-}
+import { ref, watch } from 'vue';
 
-const { todos } = defineProps<Props>();
+import TodoItem from './TodoItem.vue';
+import { Todo } from '../types/TodoTypes.ts';
+import { useTodoStore } from '../stores/TodoStore.ts';
+
+const todoStore = useTodoStore();
 </script>

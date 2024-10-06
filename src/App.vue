@@ -1,58 +1,28 @@
 <template>
-	<h1 class="header">Todo list</h1>
+	<h1 class="header">Todo</h1>
 	<TodoFilter />
-	<TodoInput />
-	<TodoList :todos="tasks" />
+	<TodoInput v-if="todoStore.activeTab != 'Done'" />
+	<TodoList />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
 import TodoFilter from './components/TodoFilter.vue';
 import TodoInput from './components/TodoInput.vue';
 import TodoList from './components/TodoList.vue';
+import { useTodoStore } from './stores/TodoStore.ts';
 
-const tasks = ref([
-	{
-		userId: 1,
-		id: 1,
-		title: 'delectus aut autem',
-		completed: true,
-	},
-	{
-		userId: 1,
-		id: 2,
-		title: 'quis ut nam facilis et officia qui',
-		completed: false,
-	},
-	{
-		userId: 1,
-		id: 3,
-		title: 'fugiat veniam minus',
-		completed: false,
-	},
-	{
-		userId: 1,
-		id: 4,
-		title: 'et porro tempora',
-		completed: true,
-	},
-	{
-		userId: 1,
-		id: 5,
-		title: 'laboriosam mollitia et enim quasi adipisci quia provident illum',
-		completed: false,
-	},
-]);
-const newTask = ref('');
+const todoStore = useTodoStore();
 
-const addTask = () => {
-	if (newTask.value.trim() !== '') {
-		tasks.value = [{ id: Math.random(), title: newTask.value }, ...tasks.value];
-		newTask.value = '';
-	}
-};
+// const addTask = () => {
+// 	if (newTask.value.trim() !== '') {
+// 		tasks.value = [{ id: Math.random(), title: newTask.value }, ...tasks.value];
+// 		newTask.value = '';
+// 	}
+// };
 
-const deleteTask = (index) => {
-	tasks.value = tasks.value.filter((item, idx) => idx !== index);
-};
+// const deleteTask = (index) => {
+// 	tasks.value = tasks.value.filter((item, idx) => idx !== index);
+// };
 </script>
