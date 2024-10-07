@@ -9,8 +9,9 @@
 	--body-bg: #161616;
 	--primary-color: #ffffff;
 	--secondary-color: #ffcc00;
-	--default-color: #000000;
 	--tertiary-color: #545454;
+	--done-color: #6ad18a;
+	--remove-color: #dc3545;
 
 	color: var(--primary-color);
 	background-color: var(--body-bg);
@@ -108,6 +109,10 @@ button:focus-visible {
 	border-radius: 2rem;
 	color: var(--primary-color);
 }
+.edit-input {
+	padding: 0.2rem 1rem;
+	text-decoration: none;
+}
 
 .addTask-input:hover {
 	outline: 0.05rem solid var(--primary-color);
@@ -141,6 +146,11 @@ ul {
 	overflow: auto;
 }
 
+.task-done {
+	color: var(--done-color);
+	text-decoration: line-through;
+}
+
 .task > .icon-btn:nth-child(3) {
 	color: var(--tertiary-color);
 	padding-left: 1rem;
@@ -158,12 +168,11 @@ ul {
 }
 
 .task > .icon-btn:last-child:hover {
-	color: var(--secondary-color);
+	color: var(--remove-color);
 }
 
 .task:hover {
 	opacity: 1;
-	color: var(--secondary-color);
 	cursor: pointer;
 	border: 0.2rem solid var(--secondary-color);
 }
@@ -185,11 +194,20 @@ ul {
 	outline: none;
 }
 
-.task > .icon-btn {
+.task .icon-btn {
 	opacity: 0;
 	font-size: 2rem;
 }
 
 .task:hover .icon-btn {
 	opacity: 1;
+}
+
+.task .icon-btn-done {
+	color: var(--done-color);
+	opacity: 1;
+}
+
+.task .icon-btn-done:hover {
+	color: var(--secondary-color);
 }

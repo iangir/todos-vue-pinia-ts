@@ -4,8 +4,6 @@
 			v-model="input"
 			class="addTask-input"
 			type="text"
-			id="newTask"
-			name="newTask"
 			placeholder="New task"
 			autocomplete="off"
 		/>

@@ -2,48 +2,25 @@ import { defineStore } from 'pinia';
 import { computed, ref, watch } from 'vue';
 import { Todo } from '../types/TodoTypes';
 
-const array = [
-	{
-		userId: 1,
-		id: 1,
-		title: 'delectus aut autem',
-		completed: true,
-	},
-	{
-		userId: 1,
-		id: 2,
-		title: 'quis ut nam facilis et officia qui',
-		completed: false,
-	},
-	{
-		userId: 1,
-		id: 3,
-		title: 'fugiat veniam minus',
-		completed: false,
-	},
-	{
-		userId: 1,
-		id: 4,
-		title: 'et porro tempora',
-		completed: true,
-	},
-	{
-		userId: 1,
-		id: 5,
-		title: 'laboriosam mollitia et enim quasi adipisci quia provident illum',
-		completed: false,
-	},
-	{
-		userId: 1,
-		id: 6,
-		title:
-			'ayyyy laboriosam mollitia et enim quasi adipisci quia provident illum',
-		completed: false,
-	},
-];
+async function getData() {
+	const url = 'https://jsonplaceholder.typicode.com/todos?_limit=10&_page=1';
+	try {
+		const response = await fetch(url);
+		if (!response.ok) {
+			throw new Error(`Response status: ${response.status}`);
+		}
+
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		if (error instanceof Error) console.error(error.message);
+	}
+}
+
+const initial = await getData();
 
 export const useTodoStore = defineStore('todos', () => {
-	const todos = ref<Todo[]>(array);
+	const todos = ref<Todo[]>(initial);
 	const activeTab = ref<string>('All');
 
 	const setActiveTab = (tab: string) => {
@@ -83,6 +60,24 @@ export const useTodoStore = defineStore('todos', () => {
 		});
 	};
 
+	const deleteTodo = (id: number) => {
+		todos.value = todos.value.filter((todo) => todo.id !== id);
+	};
+
+	// const editTodo = (id: number, title: string) => {
+	// 	// todos.value = todos.value.map((todo) => {
+	// 	// 	if (todo.id === id) {
+	// 	// 		return { ...todo, title };
+	// 	// 	}
+	// 	// 	return todo;
+	// 	// });
+	// 	todos.value.forEach((todo) => {
+	// 		if (todo.id === id) {
+	// 			todo.title = title;
+	// 		}
+	// 	});
+	// };
+
 	watch(
 		() => todos.value,
 		(state) => {
@@ -98,5 +93,6 @@ export const useTodoStore = defineStore('todos', () => {
 		setActiveTab,
 		addTodo,
 		completedToggle,
+		deleteTodo,
 	};
 });

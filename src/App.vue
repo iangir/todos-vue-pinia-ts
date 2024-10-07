@@ -1,5 +1,5 @@
 <template>
-	<h1 class="header">Todo</h1>
+	<h1 class="header">To-Do</h1>
 	<TodoFilter />
 	<TodoInput v-if="todoStore.activeTab != 'Done'" />
 	<TodoList />
