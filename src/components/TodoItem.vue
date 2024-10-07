@@ -1,5 +1,5 @@
 <template>
-	<li class="task" :class="{ 'task-done': todo.completed }">
+	<li class="task">
 		<button
 			@click="todoStore.completedToggle(todo.id)"
 			class="icon-btn task-icon-btn"
@@ -7,13 +7,15 @@
 		>
 			<i class="bi bi-check-circle"></i>
 		</button>
-		<span v-if="!isEditing">{{ todo.title }}</span>
+		<span v-if="!isEditing" :class="{ 'task-done': todo.completed }"
+			>{{ todo.title }}
+		</span>
 		<input
 			v-else
+			@keyup.enter="handleEdit"
 			v-model="todo.title"
 			class="addTask-input edit-input"
 			type="text"
-			placeholder="New task"
 			autocomplete="off"
 		/>
 		<button @click="handleEdit" class="icon-btn task-icon-btn">

@@ -13,7 +13,9 @@ async function getData() {
 		const data = await response.json();
 		return data;
 	} catch (error) {
-		if (error instanceof Error) console.error(error.message);
+		if (error instanceof Error) {
+			console.error(error.message);
+		} else throw error;
 	}
 }
 

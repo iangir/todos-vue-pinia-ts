@@ -109,10 +109,6 @@ button:focus-visible {
 	border-radius: 2rem;
 	color: var(--primary-color);
 }
-.edit-input {
-	padding: 0.2rem 1rem;
-	text-decoration: none;
-}
 
 .addTask-input:hover {
 	outline: 0.05rem solid var(--primary-color);
@@ -210,4 +206,8 @@ ul {
 
 .task .icon-btn-done:hover {
 	color: var(--secondary-color);
+}
+
+.edit-input {
+	padding: 0.3rem 1rem;
 }
