@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { Todo } from '../types/TodoTypes.ts';
 import { useTodoStore } from '../stores/TodoStore.ts';
 
@@ -43,7 +43,7 @@ const { todo } = defineProps<Props>();
 
 const todoStore = useTodoStore();
 
-const isEditing: boolean = ref(false);
+const isEditing = ref(false);
 
 const handleEdit = () => {
 	isEditing.value = !isEditing.value;

@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/stores/TodoStore.ts","./src/types/TodoTypes.ts","./src/App.vue","./src/components/TodoFilter.vue","./src/components/TodoInput.vue","./src/components/TodoItem.vue","./src/components/TodoList.vue"],"version":"5.6.2"}

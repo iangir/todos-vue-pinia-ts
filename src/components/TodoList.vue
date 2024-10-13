@@ -10,10 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-
 import TodoItem from './TodoItem.vue';
-import { Todo } from '../types/TodoTypes.ts';
 import { useTodoStore } from '../stores/TodoStore.ts';
 
 const todoStore = useTodoStore();

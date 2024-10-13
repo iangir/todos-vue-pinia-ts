@@ -19,9 +19,11 @@ const todoStore = useTodoStore();
 
 const input = defineModel();
 const handleSubmit = () => {
-	if (input.value.trim() !== '') {
-		todoStore.addTodo(input.value);
-		input.value = '';
+	if (typeof input.value === 'string') {
+		if (input.value.trim() !== '') {
+			todoStore.addTodo(input.value);
+			input.value = '';
+		}
 	}
 };
 </script>

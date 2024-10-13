@@ -43,7 +43,7 @@ export const useTodoStore = defineStore('todos', () => {
 			case 'Done':
 				return todos.value.filter((todo) => todo.completed);
 			default:
-				break;
+				return todos.value;
 		}
 	});
 
